@@ -41,3 +41,64 @@
 
     /* Точка */
     .dot {
+        font-size: 30px;
+        color: black;
+    }
+
+    /* Слабый текст */
+    .ghost-text {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color: black;
+        opacity: 0;
+        transition: opacity 5s linear;
+        pointer-events: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="hint">
+        смотри на точку чтобы увидеть иллюзию
+    </div>
+
+    <div class="ghost-text" id="ghost">
+        Я тебя ненавижу.
+    </div>
+
+    <div class="center">
+        <div class="dot" id="dot">•</div>
+    </div>
+
+</div>
+
+<script>
+    // через 15 секунд
+    setTimeout(() => {
+        const text = document.getElementById("ghost");
+
+        // Плавно до 10% (очень слабо)
+        text.style.opacity = "0.1";
+
+        // Через 5 секунд убрать
+        setTimeout(() => {
+            text.style.opacity = "0";
+
+            // После исчезновения — меняем точку
+            setTimeout(() => {
+                document.getElementById("dot").innerText = "я люблю тебя";
+            }, 500);
+
+        }, 5000);
+
+    }, 15000);
+</script>
+
+</body>
+</html>
