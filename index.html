@@ -48,3 +48,55 @@
     .ghost-text {
         position: absolute;
         top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 50px;
+        color: black;
+        opacity: 0;
+        transition: opacity 5s linear;
+        pointer-events: none;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="hint">
+        смотри на точку чтобы увидеть иллюзию
+    </div>
+
+    <div class="ghost-text" id="ghost">
+        Я тебя ненавижу.
+    </div>
+
+    <div class="center">
+        <div class="dot" id="dot">•</div>
+    </div>
+
+</div>
+
+<script>
+    // через 15 секунд
+    setTimeout(() => {
+        const text = document.getElementById("ghost");
+
+        // Плавное появление до 10%
+        text.style.opacity = "0.1";
+
+        // Через 5 секунд — одновременно:
+        setTimeout(() => {
+            // исчезает текст
+            text.style.opacity = "0";
+
+            // И сразу же меняется точка
+            document.getElementById("dot").innerText = "я люблю тебя";
+
+        }, 5000);
+
+    }, 15000);
+</script>
+
+</body>
+</html>
