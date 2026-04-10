@@ -82,12 +82,17 @@
         text.style.opacity = "0.1";
 
         setTimeout(() => {
-            // ❗ УБИРАЕМ анимацию перед скрытием
+            // Сначала убираем transition
             text.style.transition = "none";
-            text.style.opacity = "0";
 
-            // Меняем точку сразу
-            document.getElementById("dot").innerText = "я люблю тебя";
+            // Даём браузеру применить это (1 кадр)
+            requestAnimationFrame(() => {
+                // РЕЗКО скрываем
+                text.style.opacity = "0";
+
+                // И сразу меняем точку
+                document.getElementById("dot").innerText = "я люблю тебя";
+            });
 
         }, 5000);
 
