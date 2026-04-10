@@ -19,12 +19,11 @@
         position: relative;
     }
 
-    /* УВЕЛИЧЕННЫЙ текст сверху */
     .hint {
         position: absolute;
         top: 15px;
         left: 15px;
-        font-size: 20px; /* было 14px */
+        font-size: 20px;
         font-weight: bold;
         color: black;
     }
@@ -53,6 +52,19 @@
         transition: opacity 5s linear;
         pointer-events: none;
     }
+
+    /* 🔥 Тряска */
+    @keyframes shake {
+        0% { transform: translate(-50%, -50%) translate(0px, 0px); }
+        25% { transform: translate(-50%, -50%) translate(1px, -1px); }
+        50% { transform: translate(-50%, -50%) translate(-1px, 1px); }
+        75% { transform: translate(-50%, -50%) translate(1px, 1px); }
+        100% { transform: translate(-50%, -50%) translate(0px, 0px); }
+    }
+
+    .shake {
+        animation: shake 0.1s infinite;
+    }
 </style>
 </head>
 
@@ -78,21 +90,18 @@
     setTimeout(() => {
         const text = document.getElementById("ghost");
 
-        // Плавное появление
+        // 🔥 СРАЗУ включаем тряску
+        text.classList.add("shake");
+
+        // И сразу начинаем появление
         text.style.opacity = "0.1";
 
         setTimeout(() => {
-            // Сначала убираем transition
-            text.style.transition = "none";
+            // мгновенно скрываем
+            text.style.display = "none";
 
-            // Даём браузеру применить это (1 кадр)
-            requestAnimationFrame(() => {
-                // РЕЗКО скрываем
-                text.style.opacity = "0";
-
-                // И сразу меняем точку
-                document.getElementById("dot").innerText = "я люблю тебя";
-            });
+            // меняем точку
+            document.getElementById("dot").innerText = "я люблю тебя";
 
         }, 5000);
 
