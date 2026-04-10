@@ -7,18 +7,17 @@
 <style>
     body {
         margin: 0;
-        background: black; /* чёрные поля */
+        background: black;
         font-family: Arial, sans-serif;
     }
 
-    /* Белый экран */
+    /* Белая зона с чёрными полосами сверху/снизу */
     .scene {
-        position: absolute;
-        top: 10%;
-        bottom: 10%;
-        left: 0;
-        right: 0;
+        height: 80vh; /* ключ — работает и на телефоне */
+        margin-top: 10vh;
+        margin-bottom: 10vh;
         background: white;
+        position: relative;
     }
 
     /* Текст сверху */
@@ -49,56 +48,3 @@
     .ghost-text {
         position: absolute;
         top: 45%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 50px;
-        color: black;
-        opacity: 0;
-        transition: opacity 5s linear;
-        pointer-events: none;
-    }
-</style>
-</head>
-
-<body>
-
-<div class="scene">
-
-    <div class="hint">
-        смотри на точку чтобы увидеть иллюзию
-    </div>
-
-    <div class="ghost-text" id="ghost">
-        Я тебя ненавижу.
-    </div>
-
-    <div class="center">
-        <div class="dot" id="dot">•</div>
-    </div>
-
-</div>
-
-<script>
-    // через 15 секунд
-    setTimeout(() => {
-        const text = document.getElementById("ghost");
-
-        // Плавно до 10% (очень слабо)
-        text.style.opacity = "0.1";
-
-        // Через 5 секунд убрать
-        setTimeout(() => {
-            text.style.opacity = "0";
-
-            // После исчезновения — меняем точку
-            setTimeout(() => {
-                document.getElementById("dot").innerText = "я люблю тебя";
-            }, 500);
-
-        }, 5000);
-
-    }, 15000);
-</script>
-
-</body>
-</html>
