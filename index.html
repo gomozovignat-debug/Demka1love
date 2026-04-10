@@ -11,25 +11,24 @@
         font-family: Arial, sans-serif;
     }
 
-    /* Белая зона с чёрными полосами сверху/снизу */
     .scene {
-        height: 80vh; /* ключ — работает и на телефоне */
+        height: 80vh;
         margin-top: 10vh;
         margin-bottom: 10vh;
         background: white;
         position: relative;
     }
 
-    /* Текст сверху */
+    /* УВЕЛИЧЕННЫЙ текст сверху */
     .hint {
         position: absolute;
         top: 15px;
         left: 15px;
-        font-size: 14px;
+        font-size: 20px; /* было 14px */
+        font-weight: bold;
         color: black;
     }
 
-    /* Центр */
     .center {
         position: absolute;
         top: 50%;
@@ -38,13 +37,11 @@
         text-align: center;
     }
 
-    /* Точка */
     .dot {
         font-size: 30px;
         color: black;
     }
 
-    /* Слабый текст */
     .ghost-text {
         position: absolute;
         top: 45%;
@@ -78,19 +75,18 @@
 </div>
 
 <script>
-    // через 15 секунд
     setTimeout(() => {
         const text = document.getElementById("ghost");
 
-        // Плавное появление до 10%
+        // Плавное появление
         text.style.opacity = "0.1";
 
-        // Через 5 секунд — одновременно:
         setTimeout(() => {
-            // исчезает текст
+            // ❗ УБИРАЕМ анимацию перед скрытием
+            text.style.transition = "none";
             text.style.opacity = "0";
 
-            // И сразу же меняется точка
+            // Меняем точку сразу
             document.getElementById("dot").innerText = "я люблю тебя";
 
         }, 5000);
